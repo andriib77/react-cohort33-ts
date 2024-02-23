@@ -10,6 +10,8 @@
   padding: 20px;
   box-shadow: 10px 5px 5px rgba(217, 104, 11, 0.562);
 }
-.App {
-  margin: 50px 50px;
+.homework20-wrapper {
+  display: flex;
+  flex: 1;
+  padding: 50px;
 }

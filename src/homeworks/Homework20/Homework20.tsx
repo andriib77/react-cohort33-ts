@@ -10,15 +10,17 @@ function Homework20() {
   let programLangs: string[] = ["JavaScript", "Python", "Machine Learning"];
 
   return (
-    <div className="card">
-      <h2>
-        {firstName} {lastName}
-      </h2>
-      <p>{isManager ? "Manager" : "Employee"}</p>
-      <p>Job: {job}</p>
-      <p>Experience: {experience} years</p>
-      <p>Email: {email}</p>
-      <p>Program Languages: {programLangs.join(", ")}</p>
+    <div className="homework20-wrapper">
+      <div className="card">
+        <h2>
+          {firstName} {lastName}
+        </h2>
+        <p>{isManager ? "Manager" : "Employee"}</p>
+        <p>Job: {job}</p>
+        <p>Experience: {experience} years</p>
+        <p>Email: {email}</p>
+        <p>Program Languages: {programLangs.join(", ")}</p>
+      </div>
     </div>
   );
 }
