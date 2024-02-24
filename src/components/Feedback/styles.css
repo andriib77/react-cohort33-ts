@@ -1,0 +1,23 @@
+.counter-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: 400px;
+  height: fit-content;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgb(60, 78, 134);
+  color: white;
+}
+
+.button-control {
+  width: 60px;
+}
+
+.count {
+  font-size: 30px;
+  color: white;
+}
