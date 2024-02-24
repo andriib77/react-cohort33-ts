@@ -1,8 +1,8 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  align-items: start;
+  gap: 10px;
   width: 400px;
   height: fit-content;
   border: 1px solid #082229;
@@ -14,4 +14,21 @@
   display: flex;
   flex: 1;
   padding: 50px;
+}
+
+.card-info-name {
+  font-weight: bold;
+}
+
+.card-info {
+  display: flex;
+  gap: 5px;
+  font-size: 20px;
+}
+
+.langs-list {
+  margin-left: 20px;
+}
+.program-lang {
+  font-size: 18px;
 }
