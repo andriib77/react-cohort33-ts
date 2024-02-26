@@ -1,34 +1,70 @@
 import "./styles.css";
-import { useState } from "react";
+import { Children, useState } from "react";
 
-// import Feedback from "../../components/Feedback/Feedback";
-import FeedbackImg from "../../components/FeedbackImg/FeedbackImg";
+import Feedback from "../../components/Feedback/Feedback";
+import Input from "../../components/Input/Input";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import { profile } from "../../components/ProfileCard/data";
 
 function Homework21() {
-  const [like, setLike] = useState(0);
-  const [dislike, setDisLike] = useState(0);
+  // // Создаем state для likes
+  // const [likes, setLikes] = useState(0);
+  // // Создаем state для dislikes
+  // const [dislikes, setDislikes] = useState(0);
 
-  const onLike = () => {
-    setLike((prevValue) => prevValue + 1);
+  // // Создаем функцию, которая будет увеличивать likes на 1
+  // const onLike = () => {
+  //   setLikes((prevValue) => {
+  //     return prevValue + 1;
+  //   });
+  // };
+
+  // // Создаем функцию, которая будет увеличивать dislikes на 1
+  // const onDislike = () => {
+  //   setDislikes((prevValue) => prevValue + 1);
+  // };
+
+  // // Создаем функцию, которая будет сбрасывать все результаты
+  // const resetResults = () => {
+  //   setLikes(0);
+  //   setDislikes(0);
+  // };
+
+  const profile = {
+    src: "https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png",
+    firstName: "Homer",
+    lastName: "Simpson",
+    career: "Nuclear Safety Inspector",
+    hairColor: "Black",
+    hobby: "Drink beer Duff",
   };
 
-  const onDislike = () => {
-    setDisLike((prevValue) => prevValue + 1);
-  };
-
-  const reset = () => {
-    setLike(0);
-    setDisLike(0);
-  };
   return (
     <div className="homework21-wrapper">
-      <FeedbackImg
-        like={like}
-        dislike={dislike}
+      {/* <Feedback
+        likes={likes}
+        dislikes={dislikes}
         onLike={onLike}
         onDislike={onDislike}
-        reset={reset}
+        resetResults={resetResults}
       />
+      <div> */}
+      {/* <div>
+        <Input
+          id="exampleId"
+          name="exampleName"
+          placeholder="Enter..."
+          label="name"
+          type="text"
+        />
+      </div> */}
+      {/* <div>
+        <LoginForm />
+      </div> */}
+      <div>
+        <ProfileCard profileData={profile} imgSrc={profile.src} />
+      </div>
     </div>
   );
 }

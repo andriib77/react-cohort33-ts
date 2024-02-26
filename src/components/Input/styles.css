@@ -1,11 +1,9 @@
-/* inputs */
-.input-container {
+.inputcomponent-container {
   display: flex;
   flex-direction: column;
   gap: 4px;
   width: 100%;
-  height: 78px;
-  gap: 4px;
+  height: fit-content;
 }
 
 .inputcomponent-label {
@@ -13,8 +11,7 @@
   color: #6f6f6f;
 }
 
-/* Auto layout */
-.input-field {
+.input-component {
   width: 100%;
   height: 50px;
   padding: 12px;
@@ -24,15 +21,6 @@
   font-size: 16px;
 }
 
-label {
-  font-family: Lato;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-}
-
-.input-field::placeholder {
+.input-component::placeholder {
   color: #6f6f6f;
 }
