@@ -15,6 +15,10 @@ export const CounterWrapper = styled.div`
   color: white;
 `;
 
+export const RedButton = styled(CounterWrapper)`
+  background-color: red;
+`;
+
 export const ButtonControl = styled.div`
   width: 80px;
 `;

@@ -18,11 +18,13 @@ export const InputComponent = styled.input`
   height: 50px;
   padding: 12px;
   outline: none;
+  color: blue;
+  background-color: ${({ disabled }) => (disabled ? "lightgrey" : "none")};
+  color: blue;
   border: 1px solid black;
   border-radius: 4px;
   font-size: 16px;
+  ::placeholder {
+    color: #6f6f6f;
+  }
 `;
-
-// export const InputPlaceholder = styled.InputPlaceholder`
-//   color: #6f6f6f;
-// `;
