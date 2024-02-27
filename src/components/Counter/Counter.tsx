@@ -1,10 +1,10 @@
-import {CounterProps} from './types';
+import { CounterProps } from "./types";
 
-import "./styles.css";
+import { CounterWrapper, ButtonControl, Count } from "./styles";
 
 import Button from "../Button/Button";
 
-function Counter({count, onMinus, onPlus}: CounterProps) {
+function Counter({ count, onMinus, onPlus }: CounterProps) {
   // Управление сотстоянием происходит в самом компоненте
   // // Создаем state для нашего Counter
   // const [count, setCount] = useState(0);
@@ -21,15 +21,15 @@ function Counter({count, onMinus, onPlus}: CounterProps) {
   //   setCount((prevValue) => prevValue - 1);
   // };
   return (
-    <div className="counter-wrapper">
-      <div className="button-control">
+    <CounterWrapper>
+      <ButtonControl>
         <Button name="-" onClick={onMinus} />
-      </div>
-      <p className="count">{count}</p>
-      <div className="button-control">
+      </ButtonControl>
+      <Count className="count">{count}</Count>
+      <ButtonControl>
         <Button name="+" onClick={onPlus} />
-      </div>
-    </div>
+      </ButtonControl>
+    </CounterWrapper>
   );
 }
 

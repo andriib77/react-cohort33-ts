@@ -1,4 +1,4 @@
-import "./styles.css";
+import { ProfileAvatar, ProfileCardContainer, AvatarControl } from "./styles";
 
 import { ProfileCardProps } from "./types";
 
@@ -18,16 +18,16 @@ function ProfileCard({ profileData, imgSrc, children }: ProfileCardProps) {
   };
 
   return (
-    <div className="profile-card">
+    <ProfileCardContainer>
       {children}
-      <div className="avatar-control">
-        <img className="profile-avatar" alt="Profile Avatar" src={imgSrc} />
-      </div>
+      <AvatarControl>
+        <ProfileAvatar alt="Profile Avatar" src={imgSrc} />
+      </AvatarControl>
       <h2>{normalizeFirstLastName()}</h2>
       <p>Career: {profileData.career}</p>
       <p>Hair Color: {profileData.hairColor}</p>
       <p>Hobby: {profileData.hobby}</p>
-    </div>
+    </ProfileCardContainer>
   );
 }
 
