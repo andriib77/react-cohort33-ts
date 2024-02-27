@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 interface ProfileData {
   firstName: string;
   lastName: string;
@@ -9,5 +11,5 @@ interface ProfileData {
 export interface ProfileCardProps {
   profileData: ProfileData;
   imgSrc: string;
-  children?: string;
+  children?: ReactNode;
 }
