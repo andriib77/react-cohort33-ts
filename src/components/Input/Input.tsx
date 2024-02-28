@@ -6,11 +6,19 @@ import {
 
 import { InputProps } from "./types";
 
-function Input({ id, name, placeholder, label, type = "text" }: InputProps) {
+function Input({
+  disabled,
+  id,
+  name,
+  placeholder,
+  label,
+  type = "text",
+}: InputProps) {
   return (
     <InputComponentContainer>
       <InputComponentLabel htmlFor={id}>{label}</InputComponentLabel>
       <InputComponent
+        disabled={disabled}
         name={name}
         id={id}
         placeholder={placeholder}

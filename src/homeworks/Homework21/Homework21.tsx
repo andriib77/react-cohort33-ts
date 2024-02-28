@@ -5,6 +5,7 @@ import Feedback from "../../components/Feedback/Feedback";
 import Input from "../../components/Input/Input";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
+import Counter from "components/Counter/Counter";
 
 function Homework21() {
   // Создаем state для likes
@@ -63,6 +64,9 @@ function Homework21() {
       </div> */}
       {/* <div>
         <ProfileCard profileData={profile} imgSrc={profile.src} />
+      </div> */}
+      {/* <div>
+        <Counter count={count} onMinus={onMinus} onPlus={onPlus} />{" "}
       </div> */}
     </div>
   );
