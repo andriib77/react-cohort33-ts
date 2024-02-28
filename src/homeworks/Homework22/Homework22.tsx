@@ -22,11 +22,8 @@ function Homework22() {
           label="name"
           type="text"
         />
-
         <Button disabled={false} type="button" name="Create" />
-
         <Button disabled={false} isRed={true} type="button" name="Send" />
-
         <Button disabled={true} type="button" name="Send" />
       </ContainerWrapper>
     </HomeworkWrapper>

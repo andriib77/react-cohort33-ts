@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
 
-export interface ButtonComponentProps {
-  disabled?: boolean;
-}
-
 export const HomeworkWrapper = styled.div`
   display: flex;
   flex-direction: column;
