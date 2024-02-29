@@ -27,4 +27,8 @@ export const InputComponent = styled.input`
   ::placeholder {
     color: #6f6f6f;
   }
+  &:hover {
+    border: ${({ disabled }) =>
+      disabled ? "1px solid black" : "1px solid #1f27f5"};
+  }
 `;
