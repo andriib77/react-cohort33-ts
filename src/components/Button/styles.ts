@@ -10,6 +10,7 @@ export const ButtonComponent = styled.button<ButtonComponentProps>`
   outline: none;
   border: none;
   border-radius: 4px;
+  margin-top: 30px;
   padding: 20px;
   background-color: ${({ disabled, isRed }) =>
     disabled ? "gray" : isRed ? "red" : "#1f27f5"};
