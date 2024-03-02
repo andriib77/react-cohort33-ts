@@ -7,7 +7,7 @@ import {
 import { InputProps } from "./types";
 
 function Input({
-  disabled,
+  disabled = false,
   id,
   name,
   placeholder,

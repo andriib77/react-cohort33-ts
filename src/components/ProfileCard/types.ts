@@ -4,12 +4,13 @@ interface ProfileData {
   firstName: string;
   lastName: string;
   career: string;
-  hairColor: string;
-  hobby: string;
+  hairColor?: string;
+  hobby?: string;
+  age: string;
 }
 
 export interface ProfileCardProps {
   profileData: ProfileData;
-  imgSrc: string;
+  imgSrc?: string;
   children?: ReactNode;
 }

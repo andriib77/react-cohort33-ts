@@ -5,18 +5,20 @@ export const InputComponentContainer = styled.div`
   flex-direction: column;
   gap: 4px;
   width: 100%;
+  padding-top: 20px;
   height: fit-content;
 `;
 
 export const InputComponentLabel = styled.label`
   font-size: 16px;
-  color: #6f6f6f;
+  color: rgba(111, 111, 111, 1);
 `;
 
 export const InputComponent = styled.input`
   width: 100%;
   height: 50px;
   padding: 12px;
+  gap: 3px;
   outline: none;
   color: blue;
   background-color: ${({ disabled }) => (disabled ? "lightgrey" : "none")};
@@ -25,7 +27,7 @@ export const InputComponent = styled.input`
   border-radius: 4px;
   font-size: 16px;
   ::placeholder {
-    color: #6f6f6f;
+    color: rgba(30, 30, 30, 1);
   }
   &:hover {
     border: ${({ disabled }) =>

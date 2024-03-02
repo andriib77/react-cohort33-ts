@@ -1,4 +1,10 @@
-import { ProfileAvatar, ProfileCardContainer, AvatarControl } from "./styles";
+import {
+  ProfileAvatar,
+  ProfileCardContainer,
+  AvatarControl,
+  FirstLastName,
+  ProfileCardInfo,
+} from "./styles";
 
 import { ProfileCardProps } from "./types";
 
@@ -23,10 +29,10 @@ function ProfileCard({ profileData, imgSrc, children }: ProfileCardProps) {
       <AvatarControl>
         <ProfileAvatar alt="Profile Avatar" src={imgSrc} />
       </AvatarControl>
-      <h2>{normalizeFirstLastName()}</h2>
-      <p>Career: {profileData.career}</p>
-      <p>Hair Color: {profileData.hairColor}</p>
-      <p>Hobby: {profileData.hobby}</p>
+      <FirstLastName>{normalizeFirstLastName()}</FirstLastName>
+      <ProfileCardInfo>Career: {profileData.career}</ProfileCardInfo>
+      <ProfileCardInfo>Hair Color: {profileData.hairColor}</ProfileCardInfo>
+      <ProfileCardInfo>Hobby: {profileData.hobby}</ProfileCardInfo>
     </ProfileCardContainer>
   );
 }
