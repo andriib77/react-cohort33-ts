@@ -9,12 +9,11 @@ import {
 } from "./styles";
 
 function Homework24() {
-  const [inputValue, setInputValue] = useState<string>("");
   const [jokeFact, setJokeFact] = useState<string>("");
   const [jokeFact2, setJokeFact2] = useState<string>("");
 
   // Создадим функцию, которая будет вызывать GET запрос для получения новых шуток
-  const getJokeFact = async () => {
+  const getJokeFact = async (isCalledForUpdate?: boolean) => {
     try {
       const response = await fetch(
         "https://official-joke-api.appspot.com/random_joke"
@@ -31,33 +30,27 @@ function Homework24() {
       } else {
         setJokeFact(result.setup);
         setJokeFact2(result.punchline);
-        alert("Вы получили новую шутку");
+        if (isCalledForUpdate) {
+          alert("Вы получили новую шутку");
+        }
       }
     } catch (error) {
       //Тут обрабатываются ошибки
       console.log(error);
-      alert("Ошибка при получении данных");
+      if (isCalledForUpdate) {
+        alert("Ошибка при получении данных");
+      }
     }
   };
 
   useEffect(() => {
-    console.log("Mounting lifecycle method");
-
     getJokeFact();
   }, []);
-
-  useEffect(() => {
-    console.log("Updating lifecycle method");
-
-    if (!!jokeFact || !!jokeFact2) {
-      getJokeFact();
-    }
-  }, [inputValue]);
 
   return (
     <Homework24Wrapper>
       <JokeCard>
-        <Button name="New joke" onClick={getJokeFact} />
+        <Button name="New joke" onClick={() => getJokeFact(true)} />
         <div>
           <JokeFact>{jokeFact}</JokeFact>
           <JokeFactAnswer>{jokeFact2}</JokeFactAnswer>
