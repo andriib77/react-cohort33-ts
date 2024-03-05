@@ -3,4 +3,6 @@ export interface EmployeeInfo {
   lastName: string;
   ageValue: string;
   jobPosition: string;
+  agreement: boolean;
+  checked: boolean;
 }

@@ -1,9 +1,9 @@
-import { useState, ChangeEvent, SetStateAction, Dispatch } from "react";
-
+import React, { useState } from "react";
+import { Field, useFormik } from "formik";
+import * as Yup from "yup";
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
 
-import { EmployeeInfo } from "./types";
 import {
   EmployeeFormWrapper,
   EmployeeFormContainer,
@@ -14,92 +14,120 @@ import {
 } from "./styles";
 
 function EmployeeForm() {
-  const [nameValue, setNameValue] = useState<string>("");
-  const [lastNameValue, setLastNameValue] = useState<string>("");
-  const [ageValue, setAgeValue] = useState<string>("");
-  const [jobPositionValue, setJobPositionValue] = useState<string>("");
-  // Создадим state, который решает когда нам карточку показывать, а когда нет
-  const [isShowCard, setIsShowCard] = useState<boolean>(false);
-  // Создаем контейнер(стейт), в котором будет храниться информация для карточки,
-  // чтобы она туда добавлялась только на onClick
-  const [userInfo, setUserInfo] = useState<EmployeeInfo>({
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required("Обязательное поле")
+      .min(2, "Минимальное количество символов - 2")
+      .max(50, "Максимальное количество символов - 50"),
+    lastName: Yup.string()
+      .required("Обязательное поле")
+      .max(15, "Максимальное количество символов - 15"),
+    age: Yup.number()
+      .required("Обязательное поле")
+      .min(1, "Минимальное количество символов - 1")
+      .max(99, "Максимальное количество символов - 99"),
+    jobPosition: Yup.string().max(30, "Максимальное количество символов - 30"),
+    agreement: Yup.boolean()
+      .required("Обязательное поле")
+      .oneOf([true], "Необходимо согласиться с правилами использования"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      lastName: "",
+      age: "",
+      jobPosition: "",
+      agreement: false,
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      setUserInfo(values);
+      setIsShowCard(true);
+    },
+  });
+
+  const [userInfo, setUserInfo] = useState({
     name: "",
     lastName: "",
-    ageValue: "",
+    age: "",
     jobPosition: "",
   });
 
-  const onChangeFieldsValue = (
-    event: ChangeEvent<HTMLInputElement>,
-    setFieldValue: Dispatch<SetStateAction<string>>
-  ) => {
-    setFieldValue(event.target.value);
-  };
-
-  const createEmployeeCard = () => {
-    // Если все значения у нас не пустые, то показываем карточку
-    if (!!nameValue && !!lastNameValue && !!ageValue && !!jobPositionValue) {
-      setUserInfo({
-        name: nameValue,
-        lastName: lastNameValue,
-        ageValue: ageValue,
-        jobPosition: jobPositionValue,
-      });
-      setIsShowCard(true);
-    } else {
-      // Показываем alert если хотя бы одно из полей пустое
-      setIsShowCard(false);
-      setTimeout(() => alert("Введите данные во все поля"), 0);
-    }
-  };
+  const [isShowCard, setIsShowCard] = useState(false);
 
   return (
     <EmployeeFormWrapper>
-      <EmployeeFormContainer>
+      <EmployeeFormContainer onSubmit={formik.handleSubmit}>
         <Input
-          id="first_name_id"
-          name="firstName"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            onChangeFieldsValue(event, setNameValue)
-          }
-          value={nameValue}
-          label="Имя"
+          id="name"
+          name="name"
+          onChange={formik.handleChange}
+          error={formik.errors.name}
+          value={formik.values.name}
+          label="Имя*"
           placeholder="Иван"
         />
+        {formik.touched.name && formik.errors.name ? (
+          <div>{formik.errors.name}</div>
+        ) : null}
+
         <Input
-          id="last_name_id"
+          id="lastName"
           name="lastName"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            onChangeFieldsValue(event, setLastNameValue)
-          }
-          value={lastNameValue}
-          label="Фамилия"
+          onChange={formik.handleChange}
+          error={formik.errors.lastName}
+          value={formik.values.lastName}
+          label="Фамилия*"
           placeholder="Василевский"
         />
+        {formik.touched.lastName && formik.errors.lastName ? (
+          <div>{formik.errors.lastName}</div>
+        ) : null}
+
         <Input
-          id="age_id"
+          id="age"
           name="age"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            onChangeFieldsValue(event, setAgeValue)
-          }
-          value={ageValue}
-          label="Возраст"
+          onChange={formik.handleChange}
+          error={formik.errors.age}
+          value={formik.values.age}
+          label="Возраст*"
           placeholder="25"
         />
+        {formik.touched.age && formik.errors.age ? (
+          <div>{formik.errors.age}</div>
+        ) : null}
+
         <Input
-          id="job_position_id"
-          name="job_position"
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            onChangeFieldsValue(event, setJobPositionValue)
-          }
-          value={jobPositionValue}
+          id="jobPosition"
+          name="jobPosition"
+          onChange={formik.handleChange}
+          error={formik.errors.jobPosition}
+          value={formik.values.jobPosition}
           label="Должность"
           placeholder="Старший специалист"
         />
-        <Button name="Создать" onClick={createEmployeeCard} />
+        {formik.touched.jobPosition && formik.errors.jobPosition ? (
+          <div>{formik.errors.jobPosition}</div>
+        ) : null}
+
+        <span>Правила использования</span>
+        <label>
+          <input
+            type="checkbox"
+            name="agreement"
+            value="Правила использования"
+            checked={formik.values.agreement}
+            onChange={formik.handleChange}
+          />
+          Я согласен с политикой обработки данных*
+        </label>
+        {formik.touched.agreement && formik.errors.agreement ? (
+          <div>{formik.errors.agreement}</div>
+        ) : null}
+
+        <Button name="Создать" type="submit" />
       </EmployeeFormContainer>
-      {/* Если в левой части от && у вас false, то правая часть(JSX элементы) не показываются, 
-      если же левая часть от && true, то правая часть(JSX элементы) отображается */}
       {isShowCard && (
         <EmployeeCard>
           <EmployeeInfoContainer>
@@ -112,7 +140,7 @@ function EmployeeForm() {
           </EmployeeInfoContainer>
           <EmployeeInfoContainer>
             <EmployeeTitle>Возраст</EmployeeTitle>
-            <EmployeeInfoText>{userInfo.ageValue}</EmployeeInfoText>
+            <EmployeeInfoText>{userInfo.age}</EmployeeInfoText>
           </EmployeeInfoContainer>
           <EmployeeInfoContainer>
             <EmployeeTitle>Должность</EmployeeTitle>
