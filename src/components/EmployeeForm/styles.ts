@@ -46,3 +46,25 @@ export const EmployeeInfoText = styled.p`
   font-weight: bold;
   color: black;
 `;
+
+export const ErrorContainer = styled.div`
+  font-size: 16px;
+  color: red;
+  height: 18px;
+`;
+
+export const CheckboxTitel = styled.span`
+  font-size: 16px;
+  color: #6f6f6f;
+`;
+
+export const CheckboxLabel = styled.label`
+  font-size: 16px;
+  color: #6f6f6f;
+`;
+
+export const Checkbox = styled.input`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+`;

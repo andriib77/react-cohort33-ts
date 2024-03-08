@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Field, useFormik } from "formik";
+import { useState } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
@@ -11,6 +11,10 @@ import {
   EmployeeInfoContainer,
   EmployeeInfoText,
   EmployeeTitle,
+  ErrorContainer,
+  Checkbox,
+  CheckboxLabel,
+  CheckboxTitel,
 } from "./styles";
 
 function EmployeeForm() {
@@ -27,9 +31,10 @@ function EmployeeForm() {
       .min(1, "Минимальное количество символов - 1")
       .max(99, "Максимальное количество символов - 99"),
     jobPosition: Yup.string().max(30, "Максимальное количество символов - 30"),
-    agreement: Yup.boolean()
-      .required("Обязательное поле")
-      .oneOf([true], "Необходимо согласиться с правилами использования"),
+    agreement: Yup.boolean().oneOf(
+      [true],
+      "Необходимо согласиться с правилами использования"
+    ),
   });
 
   const formik = useFormik({
@@ -60,7 +65,7 @@ function EmployeeForm() {
     <EmployeeFormWrapper>
       <EmployeeFormContainer onSubmit={formik.handleSubmit}>
         <Input
-          id="name"
+          id="first_name_id"
           name="name"
           onChange={formik.handleChange}
           error={formik.errors.name}
@@ -68,12 +73,8 @@ function EmployeeForm() {
           label="Имя*"
           placeholder="Иван"
         />
-        {formik.touched.name && formik.errors.name ? (
-          <div>{formik.errors.name}</div>
-        ) : null}
-
         <Input
-          id="lastName"
+          id="last_name_id"
           name="lastName"
           onChange={formik.handleChange}
           error={formik.errors.lastName}
@@ -81,12 +82,8 @@ function EmployeeForm() {
           label="Фамилия*"
           placeholder="Василевский"
         />
-        {formik.touched.lastName && formik.errors.lastName ? (
-          <div>{formik.errors.lastName}</div>
-        ) : null}
-
         <Input
-          id="age"
+          id="age_id"
           name="age"
           onChange={formik.handleChange}
           error={formik.errors.age}
@@ -94,12 +91,8 @@ function EmployeeForm() {
           label="Возраст*"
           placeholder="25"
         />
-        {formik.touched.age && formik.errors.age ? (
-          <div>{formik.errors.age}</div>
-        ) : null}
-
         <Input
-          id="jobPosition"
+          id="job_position_id"
           name="jobPosition"
           onChange={formik.handleChange}
           error={formik.errors.jobPosition}
@@ -107,13 +100,9 @@ function EmployeeForm() {
           label="Должность"
           placeholder="Старший специалист"
         />
-        {formik.touched.jobPosition && formik.errors.jobPosition ? (
-          <div>{formik.errors.jobPosition}</div>
-        ) : null}
-
-        <span>Правила использования</span>
-        <label>
-          <input
+        <CheckboxTitel>Правила использования</CheckboxTitel>
+        <CheckboxLabel>
+          <Checkbox
             type="checkbox"
             name="agreement"
             value="Правила использования"
@@ -121,13 +110,14 @@ function EmployeeForm() {
             onChange={formik.handleChange}
           />
           Я согласен с политикой обработки данных*
-        </label>
+        </CheckboxLabel>
         {formik.touched.agreement && formik.errors.agreement ? (
-          <div>{formik.errors.agreement}</div>
+          <ErrorContainer>{formik.errors.agreement}</ErrorContainer>
         ) : null}
-
         <Button name="Создать" type="submit" />
       </EmployeeFormContainer>
+      {/* Если в левой части от && у вас false, то правая часть(JSX элементы) не показываются, 
+      если же левая часть от && true, то правая часть(JSX элементы) отображается */}
       {isShowCard && (
         <EmployeeCard>
           <EmployeeInfoContainer>
@@ -142,10 +132,12 @@ function EmployeeForm() {
             <EmployeeTitle>Возраст</EmployeeTitle>
             <EmployeeInfoText>{userInfo.age}</EmployeeInfoText>
           </EmployeeInfoContainer>
-          <EmployeeInfoContainer>
-            <EmployeeTitle>Должность</EmployeeTitle>
-            <EmployeeInfoText>{userInfo.jobPosition}</EmployeeInfoText>
-          </EmployeeInfoContainer>
+          {!!userInfo.jobPosition && (
+            <EmployeeInfoContainer>
+              <EmployeeTitle>Должность</EmployeeTitle>
+              <EmployeeInfoText>{userInfo.jobPosition}</EmployeeInfoText>
+            </EmployeeInfoContainer>
+          )}
         </EmployeeCard>
       )}
     </EmployeeFormWrapper>
