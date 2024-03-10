@@ -1,6 +1,6 @@
 import { FeedbackProps } from "./types";
 
-import { Like } from "../../assets";
+import { Like } from "../../assets/index_";
 
 import Button from "../Button/Button";
 
