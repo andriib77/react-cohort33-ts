@@ -1,4 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import GlobalStyles from "styles/GlobalStyles";
+import Layout from "components/Layout/Layout";
+
+// Pages
+import Home from "pages/Home/Home";
+import About from "pages/About/About";
+import Users from "pages/Users/Users";
+import Clients from "pages/Clients/Clients";
+import Facebook from "pages/Clients/Facebook/Facebook";
+import Toyota from "pages/Clients/Toyota/Toyota";
+import Apple from "pages/Clients/Apple/Apple";
 
 //Lessons
 import Lesson20 from "./lessons/Lesson20/Lesson20";
@@ -17,22 +29,33 @@ import Homework25 from "homeworks/Homework25/Homework25";
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyles />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/clients/facebook" element={<Facebook />} />
+          <Route path="/clients/toyota" element={<Toyota />} />
+          <Route path="/clients/apple" element={<Apple />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element="Page Not Found" />
+        </Routes>
+      </Layout>
       {/* <Lesson20 /> */}
       {/* <Lesson21 /> */}
       {/* <Lesson22 /> */}
       {/* <Lesson23 /> */}
       {/* <Lesson24 /> */}
       {/* <Lesson25 /> */}
-
       {/* <Homework20 /> */}
       {/* <Homework21 /> */}
       {/* <Homework22 /> */}
       {/* <Homework23 /> */}
       {/* <Homework24 /> */}
-      <Homework25 />
-    </>
+      {/* <Homework25 /> */}
+    </BrowserRouter>
   );
 }
 

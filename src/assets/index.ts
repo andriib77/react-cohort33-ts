@@ -1,1 +1,1 @@
-export { default as Like } from "./Like.png";
+export { default as UserLogo } from "./users.jpg";
