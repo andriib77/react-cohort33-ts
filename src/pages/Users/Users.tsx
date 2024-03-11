@@ -13,9 +13,9 @@ function Users() {
   };
 
   useEffect(() => {
-    return () => console.log('Component Users unmounted')
-  }, [])
-  
+    return () => console.log("Component Users unmounted");
+  }, []);
+
   return (
     <UsersWrapper>
       <UsersPageTitle>Users</UsersPageTitle>

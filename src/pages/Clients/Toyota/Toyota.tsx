@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import {
   ClientsWrapper,
   ClientsPageTitle,
@@ -12,9 +11,7 @@ function Toyota() {
   const goToPage = () => {
     navigate("/clients");
   };
-  useEffect(() => {
-    return () => console.log("Component Users unmounted");
-  }, []);
+
   return (
     <ClientsWrapper>
       <ClientsPageTitle>Toyota</ClientsPageTitle>
